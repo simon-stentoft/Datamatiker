@@ -1,3 +1,5 @@
+package Chapter5Assignments;
+
 public class Ass5_5 {
     public static void main(String[] args) {
 
@@ -7,8 +9,6 @@ public class Ass5_5 {
             double fahrenTwo = 20 + 2.5*i;
             double celciusTwo = (fahrenTwo - 32)/1.8;
                 System.out.println(String.format("%d\t\t\t %.1f | %.0f\t\t  %.2f", i, fahrenheit, fahrenTwo, celciusTwo));
-
-
         }
-}
+    }
 }
