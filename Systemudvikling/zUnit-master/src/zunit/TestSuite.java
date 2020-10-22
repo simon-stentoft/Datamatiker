@@ -32,4 +32,23 @@ public abstract class TestSuite {
             "Actual result: " + actual);
         }
     }
+    public void assertEquals(String expected, String actual){
+        if (expected.equals(actual)) {
+            passed++;
+        }
+        else {
+            failed++;
+            System.out.println("Test " + (passed + failed) +  " has failed.\n" + "Expected result: " + expected + "\n" +
+                    "Actual result: " + actual);
+        }
+    }
+    public void assertEquals(double expected, double actual, double delta) {
+        if (expected == actual +- delta) {
+            passed++;
+        } else {
+            failed++;
+            System.out.println("Test " + (passed + failed) + " has failed.\n" + "Expected result: " + expected + "\n" +
+                    "Actual result: " + actual);
+        }
+    }
 }
