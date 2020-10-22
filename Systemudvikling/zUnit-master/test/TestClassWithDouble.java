@@ -14,9 +14,9 @@ public class TestClassWithDouble extends TestSuite {
     }
     private void passingTest(){
         // Ændres fra int til Strings
-        assertEquals(3,4,1);
+        assertEquals(3.5,4.3,1);
     }
     private void failingTest(){
-        assertEquals(3, 5 ,2);
+        assertEquals(3.3, 4.5 ,2);
     }
 }

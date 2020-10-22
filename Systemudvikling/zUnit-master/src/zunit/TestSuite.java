@@ -43,7 +43,7 @@ public abstract class TestSuite {
         }
     }
     public void assertEquals(double expected, double actual, double delta) {
-        if (expected == actual +- delta) {
+        if (expected == actual + delta && expected == actual - delta) {
             passed++;
         } else {
             failed++;
