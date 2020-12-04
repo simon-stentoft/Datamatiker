@@ -1,15 +1,18 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -19,9 +22,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Main extends Application implements EventHandler<ActionEvent> {
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+
+public class Main extends Application {
 
     Scene scene1, scene2, scene3,scene4,scene5,scene6,scene7;
+    TextField input;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -86,26 +95,63 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         imageView6.setFitHeight(400);
         imageView6.setFitWidth(350);
 
-        //Button 1
+
+        //File
+
+        TextField input = new TextField();
+        Button buttonFile = new Button("What do you think of this meme?");
+        //buttonFile.setOnAction(e -> System.out.println(input.getText()));
+        buttonFile.setAlignment(Pos.BOTTOM_CENTER);
+        buttonFile.setOnAction(e -> {
+            System.out.println("Clicked");
+            System.out.println(input.getText());
+            File file = new File("Tekstfil.txt");
+            FileWriter fileWriter = null;
+            try {
+                fileWriter = new FileWriter(file);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            try {
+                fileWriter.close();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+        //java.io.File Data = new java.io.File("Data.txt");
+        //java.io.PrintWriter output = new java.io.PrintWriter(f);
+
+        HBox hBoxFile = new HBox();
+        hBoxFile.getChildren().addAll(input,buttonFile);
+        hBoxFile.setAlignment(Pos.BOTTOM_CENTER);
+
+        StackPane filePane = new StackPane();
+        filePane.getChildren().addAll(hBoxFile);
+
+
+        // 1
         Button button1 = new Button("Click me for a new meme");
         button1.setOnAction(e -> primaryStage.setScene(scene2));
+        button1.setAlignment(Pos.TOP_CENTER);
 
         HBox hBox1 = new HBox();
-        hBox1.getChildren().addAll(button1);
+        hBox1.getChildren().addAll(button1,filePane);
+        hBox1.setAlignment(Pos.TOP_CENTER);
 
-        //Layout 1
+
         StackPane layout1 = new StackPane();
         layout1.getChildren().addAll(imageView1,hBox1);
         Scene scene1 = new Scene(layout1, 500, 500);
 
-        // Button 2
+        // 2
         Button button2 = new Button("Click me for a new meme");
         button2.setOnAction(e -> primaryStage.setScene(scene3));
 
         HBox hBox2 = new HBox();
         hBox2.getChildren().addAll(button2);
+        hBox2.setAlignment(Pos.TOP_CENTER);
 
-        //Layout 2
         StackPane layout2 = new StackPane();
         layout2.getChildren().addAll(hBox2,imageView2);
         scene2 = new Scene(layout2,500,500);
@@ -116,6 +162,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         HBox hBox3 = new HBox();
         hBox3.getChildren().addAll(button3);
+        hBox3.setAlignment(Pos.TOP_CENTER);
 
         StackPane layout3 = new StackPane();
         layout3.getChildren().addAll(imageView3,hBox3);
@@ -127,6 +174,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         HBox hBox4 = new HBox();
         hBox4.getChildren().addAll(button4);
+        hBox4.setAlignment(Pos.TOP_CENTER);
 
         StackPane layout4 = new StackPane();
         layout4.getChildren().addAll(imageView4,hBox4);
@@ -138,6 +186,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         HBox hBox5 = new HBox();
         hBox5.getChildren().addAll(button5);
+        hBox5.setAlignment(Pos.TOP_CENTER);
 
         StackPane layout5 = new StackPane();
         layout5.getChildren().addAll(imageView5,hBox5);
@@ -149,6 +198,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         HBox hBox6 = new HBox();
         hBox6.getChildren().addAll(button6);
+        hBox6.setAlignment(Pos.TOP_CENTER);
 
         StackPane layout6 = new StackPane();
         layout6.getChildren().addAll(imageView6,hBox6);
@@ -160,6 +210,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         HBox hBox7 = new HBox();
         hBox7.getChildren().addAll(button7);
+        hBox7.setAlignment(Pos.TOP_CENTER);
 
         StackPane layout7 = new StackPane();
         layout7.getChildren().addAll(imageView7,hBox7);
@@ -169,11 +220,13 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         primaryStage.setScene(scene1);
         primaryStage.setTitle("Memer");
         primaryStage.show();
+
+
     }
 
-    @Override
-    public void handle(ActionEvent actionEvent) {
-
+    public void handle() {
+        System.out.println("Clicked");
+        System.out.println(input.getText());
     }
 
     public static void main(String[] args) {
